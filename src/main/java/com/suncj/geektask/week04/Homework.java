@@ -3,6 +3,7 @@ package com.suncj.geektask.week04;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -36,7 +37,23 @@ public class Homework {
         way09();
         //实现方式10
         way10();
+        //实现方式11
+        way11();
         // 然后退出main线程
+    }
+
+
+    private static void way11() {
+        long start = System.currentTimeMillis();
+        CopyOnWriteArrayList<Integer> results = new CopyOnWriteArrayList<>();
+        final Thread mainThread = Thread.currentThread();
+        new Thread(() -> {
+            results.add(sum());
+            LockSupport.unpark(mainThread);
+        }).start();
+        LockSupport.park();
+        System.out.println("way11异步计算结果为:"+results.get(0));
+        System.out.println("way11使用时间：" + (System.currentTimeMillis() - start) + " ms");
     }
 
 
