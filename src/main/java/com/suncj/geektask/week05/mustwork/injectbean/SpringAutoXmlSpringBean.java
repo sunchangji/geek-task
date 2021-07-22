@@ -1,4 +1,4 @@
-package com.suncj.geektask.week05.mustwork;
+package com.suncj.geektask.week05.mustwork.injectbean;
 
 import lombok.val;
 import org.springframework.beans.factory.InitializingBean;
