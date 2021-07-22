@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Classname SpringAnnotationBean
+ * @Classname 注解的方式实现注入bean
  * @Description TODO
  * @Date 2021/7/22 5:12 下午
  * @Created by sunchangji
