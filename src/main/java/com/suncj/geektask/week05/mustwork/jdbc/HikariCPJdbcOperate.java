@@ -12,14 +12,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * 原生jdbc增删查操作
- * @Classname JdbcOperate
+ * @Classname HikariCPJdbcOperate
  * @Description TODO
- * @Date 2021/7/22 6:13 下午
+ * @Date 2021/7/22 8:11 下午
  * @Created by sunchangji
  */
 @Service
-public class JdbcOperate {
+public class HikariCPJdbcOperate {
+
     @Autowired
     private JdbcConnection jdbcConnection;
 
@@ -32,62 +32,32 @@ public class JdbcOperate {
      */
     public int insert(JdbcUser jdbcUser) throws SQLException {
         String sql = "insert into user(username,age) values(?,?)";
-        Connection connection = null;
-        PreparedStatement ps = null;
-        try {
-            connection = jdbcConnection.getConnection();
-            ps = connection.prepareStatement(sql);
+        Connection connection = jdbcConnection.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, jdbcUser.getUserName());
             ps.setInt(2, jdbcUser.getAge());
             return ps.executeUpdate();
-        } finally {
-            if (ps != null && !ps.isClosed()) {
-                ps.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
         }
     }
 
 
     public int updateById(JdbcUser jdbcUser) throws SQLException {
         String sql = "update user set username = ?,age=? where id = ?";
-        Connection connection = null;
-        PreparedStatement ps = null;
-        try {
-            connection = jdbcConnection.getConnection();
-            ps = connection.prepareStatement(sql);
+        Connection connection = jdbcConnection.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, jdbcUser.getUserName());
             ps.setInt(2, jdbcUser.getAge());
             ps.setLong(3, jdbcUser.getId());
             return ps.executeUpdate();
-        } finally {
-            if (ps != null && !ps.isClosed()) {
-                ps.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
         }
     }
 
     public int deleteById(Long id) throws SQLException {
         String sql = "delete from user where id = ?";
-        Connection connection = null;
-        PreparedStatement ps = null;
-        try {
-            connection = jdbcConnection.getConnection();
-            ps = connection.prepareStatement(sql);
+        Connection connection = jdbcConnection.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setLong(1, id);
             return ps.executeUpdate();
-        } finally {
-            if (ps != null && !ps.isClosed()) {
-                ps.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
         }
     }
 
@@ -98,13 +68,9 @@ public class JdbcOperate {
      */
     public List<JdbcUser> findAll() throws SQLException {
         String sql = "select * from user";
-        Connection connection = null;
-        PreparedStatement ps = null;
+        Connection connection = jdbcConnection.getConnection();
         ResultSet rs = null;
-
-        try {
-            connection = jdbcConnection.getConnection();
-            ps = connection.prepareStatement(sql);
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
             rs = ps.executeQuery();
             List<JdbcUser> users = Lists.newArrayList();
             while (rs.next()) {
@@ -116,14 +82,8 @@ public class JdbcOperate {
             }
             return users;
         } finally {
-            if (ps != null && !ps.isClosed()) {
-                ps.close();
-            }
             if (rs != null && !rs.isClosed()) {
                 rs.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
             }
         }
     }
@@ -134,12 +94,9 @@ public class JdbcOperate {
      */
     public void batchTrans() throws SQLException {
         String sql = "insert into user(username,age) values(?,?)";
-        Connection conn = null;
-        PreparedStatement ps = null;
-        try {
-            conn = jdbcConnection.getConnection();
+        Connection conn = jdbcConnection.getConnection();
+        try (PreparedStatement ps = conn.prepareStatement(sql);){
             conn.setAutoCommit(false);//将自动提交关闭
-            ps = conn.prepareStatement(sql);
             for (int i = 0; i < 10000; i++) {
                 ps.setString(1, "测试批量插入" + i);
                 ps.setInt(2, i);
@@ -153,14 +110,6 @@ public class JdbcOperate {
             ps.executeBatch();//执行最后剩下不够100条的
             conn.commit();//执行完后，手动提交事务
             conn.setAutoCommit(true);
-        } finally {
-            if (ps != null && !ps.isClosed()) {
-                ps.close();
-            }
-            if (conn != null && !conn.isClosed()) {
-                conn.close();
-            }
         }
     }
-
 }
