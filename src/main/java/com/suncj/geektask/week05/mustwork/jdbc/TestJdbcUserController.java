@@ -57,4 +57,10 @@ public class TestJdbcUserController {
     public List<JdbcUser> findAll() throws SQLException {
         return jdbcOperate.findAll();
     }
+
+    @GetMapping("/batchTrans")
+    public String batchTrans() throws SQLException {
+        jdbcOperate.batchTrans();
+        return "完成";
+    }
 }

@@ -127,4 +127,39 @@ public class JdbcOperate {
         }
     }
 
+    /**
+     * 使用事务，PrepareStatement方式，批处理方式
+     * @return
+     */
+    public void batchTrans() throws SQLException {
+        String sql = "insert into user(username,age) values(?,?)";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = jdbcConnection.getConnection();
+            conn.setAutoCommit(false);//将自动提交关闭
+            ps = conn.prepareStatement(sql);
+            for (int i = 0; i < 10000; i++) {
+                ps.setString(1, "测试批量插入" + i);
+                ps.setInt(2, i);
+                ps.addBatch();
+                //每100条执行一次
+                if (i > 0 && i % 100 == 0) {
+                    ps.executeBatch();
+                    conn.commit();
+                }
+            }
+            ps.executeBatch();//执行最后剩下不够100条的
+            conn.commit();//执行完后，手动提交事务
+            conn.setAutoCommit(true);
+        } finally {
+            if (ps != null && !ps.isClosed()) {
+                ps.close();
+            }
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
+        }
+    }
+
 }
