@@ -1,4 +1,4 @@
-package com.suncj.geektask.week05;
+package com.suncj.geektask.week05.mustwork;
 
 import com.suncj.geektask.week05.beans.Klass;
 import com.suncj.geektask.week05.beans.School;

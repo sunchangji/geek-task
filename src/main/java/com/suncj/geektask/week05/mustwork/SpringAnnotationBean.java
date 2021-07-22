@@ -1,4 +1,4 @@
-package com.suncj.geektask.week05;
+package com.suncj.geektask.week05.mustwork;
 
 import com.google.common.collect.Lists;
 import com.suncj.geektask.week05.beans.Klass;

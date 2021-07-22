@@ -1,4 +1,4 @@
-package com.suncj.geektask.week05;
+package com.suncj.geektask.week05.mustwork;
 
 import lombok.val;
 import org.springframework.context.ApplicationContext;
