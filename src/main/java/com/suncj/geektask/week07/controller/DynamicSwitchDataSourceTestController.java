@@ -36,7 +36,9 @@ public class DynamicSwitchDataSourceTestController {
     }
 
     /**
-     * 1w一次执行会爆Packet for query is too large (5544651 > 4194304),sql过长
+     * 一次执行过多需要考虑Packet for query is too large (5544651 > 4194304),sql过长
+     * 一条一条执行超慢
+     * 一批一批执行是比较好的方式
      * @return
      */
     @RequestMapping("batch100w")
