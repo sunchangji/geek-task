@@ -1,13 +1,12 @@
 package com.suncj.geektask.week07.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 public class TradeOrderEntity {
     /**
      * 订单ID

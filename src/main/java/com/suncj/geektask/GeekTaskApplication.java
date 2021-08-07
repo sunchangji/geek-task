@@ -1,5 +1,6 @@
 package com.suncj.geektask;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Created by sunchangji
  */
 @SpringBootApplication
+@MapperScan("com.suncj.geektask.week07.mapper")
 public class GeekTaskApplication {
 
     public static void main(String[] args) {

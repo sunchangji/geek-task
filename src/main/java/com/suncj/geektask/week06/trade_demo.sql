@@ -12,8 +12,8 @@ CREATE TABLE `brand_info` (
   `brand_logo` varchar(100) DEFAULT NULL COMMENT '品牌logo URL',
   `brand_desc` varchar(150) DEFAULT NULL COMMENT '品牌描述',
   `brand_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '品牌状态,0禁用,1启用',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='品牌信息表';
 
@@ -27,8 +27,8 @@ CREATE TABLE `customer_addr` (
   `district` smallint(6) NOT NULL COMMENT '地区表中的区ID',
   `address` varchar(200) NOT NULL COMMENT '具体的地址门牌号',
   `defaulted` tinyint(4) NOT NULL COMMENT '是否默认',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户地址表';
 
@@ -45,8 +45,8 @@ CREATE TABLE `customer_info` (
   `user_point` int(11) NOT NULL DEFAULT '0' COMMENT '用户积分',
   `birthday` datetime DEFAULT NULL COMMENT '会员生日',
   `user_money` decimal(8,2) NOT NULL DEFAULT '0.00' COMMENT '用户余额',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表';
 
@@ -56,8 +56,8 @@ CREATE TABLE `customer_login` (
   `login_name` varchar(20) NOT NULL COMMENT '用户登录名',
   `password` char(32) NOT NULL COMMENT 'md5加密的密码',
   `user_stats` tinyint(4) NOT NULL DEFAULT '1' COMMENT '用户状态',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户登录表';
 
@@ -68,9 +68,9 @@ CREATE TABLE `order_cart` (
   `product_id` bigint(20) unsigned NOT NULL COMMENT '商品ID',
   `product_amount` int(11) NOT NULL COMMENT '加入购物车商品数量',
   `price` decimal(8,2) NOT NULL COMMENT '商品价格',
-  `add_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '加入购物车时间',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '加入购物车时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='购物车表';
 
@@ -82,8 +82,8 @@ CREATE TABLE `product_category` (
   `parent_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '父分类ID',
   `category_level` tinyint(4) NOT NULL DEFAULT '1' COMMENT '分类层级',
   `category_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '分类状态',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品分类表';
 
@@ -107,8 +107,8 @@ CREATE TABLE `product_info` (
   `production_date` datetime NOT NULL COMMENT '生产日期',
   `shelf_life` int(11) NOT NULL COMMENT '商品有效期',
   `descript` text NOT NULL COMMENT '商品描述',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品信息表';
 
@@ -119,8 +119,8 @@ CREATE TABLE `shipping_info` (
   `ship_contact` varchar(20) NOT NULL COMMENT '物流公司联系人',
   `telephone` varchar(20) NOT NULL COMMENT '物流公司联系电话',
   `price` decimal(8,2) NOT NULL DEFAULT '0.00' COMMENT '配送价格',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='物流公司信息表';
 
@@ -136,8 +136,8 @@ CREATE TABLE `supplier_info` (
   `bank_account` varchar(50) NOT NULL COMMENT '银行账号',
   `address` varchar(200) NOT NULL COMMENT '供应商地址',
   `supplier_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态：0禁止，1启用',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='供应商信息表';
 
@@ -163,15 +163,15 @@ CREATE TABLE `trade_order` (
   `pay_time` datetime DEFAULT NULL COMMENT '支付时间',
   `receive_time` datetime DEFAULT NULL COMMENT '收货时间',
   `order_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '订单状态',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单主表';
 
 DROP TABLE IF EXISTS `trade_order_detail`;
 CREATE TABLE `trade_order_detail` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单详情表ID',
-  `order_id` bigint(20) unsigned NOT NULL COMMENT '订单表ID',
+  `order_id` varchar(128) NOT NULL COMMENT '订单表ID',
   `product_id` bigint(20) unsigned NOT NULL COMMENT '订单商品ID',
   `product_name` varchar(50) NOT NULL COMMENT '商品名称',
   `buy_num` int(11) NOT NULL DEFAULT '1' COMMENT '购买商品数量',
@@ -179,8 +179,8 @@ CREATE TABLE `trade_order_detail` (
   `average_cost` decimal(8,2) NOT NULL COMMENT '平均成本价格',
   `fee_money` decimal(8,2) NOT NULL DEFAULT '0.00' COMMENT '优惠分摊金额',
   `warehouse_id` bigint(20) unsigned NOT NULL COMMENT '仓库ID',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单详情表';
 
@@ -196,7 +196,7 @@ CREATE TABLE `warehouse_info` (
   `distrct` smallint(6) NOT NULL COMMENT '区',
   `address` varchar(100) NOT NULL COMMENT '仓库地址',
   `warehouse_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '仓库状态：0禁用，1启用',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='仓库信息表';
