@@ -67,7 +67,7 @@
         (<include refid="cols_exclude_id"/>)
         values
         <foreach collection="list" item="item" index="index" separator=",">
-            #{item.orderId},
+            (#{item.orderId},
             #{item.productId},
             #{item.productName},
             #{item.buyNum},
@@ -77,6 +77,7 @@
             #{item.warehouseId},
             #{item.createTime},
             #{item.updateTime}
+            )
         </foreach>
 
     </insert>
