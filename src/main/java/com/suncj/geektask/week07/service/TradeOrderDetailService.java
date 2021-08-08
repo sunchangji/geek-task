@@ -15,12 +15,20 @@ public class TradeOrderDetailService {
     @Autowired
     private TradeOrderDetailMapper tradeOrderDetailMapper;
 
-    @DynamicSwitchDataSource(dataSource = Week07Constant.SLAVE)
+    /**
+     * 注解去掉就走shardingsphere读写分离
+     * @return
+     */
+//    @DynamicSwitchDataSource(dataSource = Week07Constant.SLAVE)
     public List<TradeOrderDetailEntity> findList() {
         return tradeOrderDetailMapper.findList();
     }
 
-    @DynamicSwitchDataSource(dataSource = Week07Constant.MASTER)
+    /**
+     * 注解去掉就走shardingsphere读写分离
+     * @return
+     */
+//    @DynamicSwitchDataSource(dataSource = Week07Constant.MASTER)
     public void create(TradeOrderDetailEntity entity){
         tradeOrderDetailMapper.create(entity);
     }
